@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Balık Eşleştirme Yapbozu</title>
+  <style>
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #ebf4ff; text-align: center; padding: 20px; margin: 0; }
+    h2 { color: #2b6cb0; margin-bottom: 5px; }
+    p { color: #4a5568; margin-bottom: 25px; }
+    
+    .oyun-alani { display: flex; justify-content: space-between; gap: 10px; }
+    .sutun { display: flex; flex-direction: column; gap: 15px; width: 48%; }
+    
+    /* Gerçek Balık Resimleri İçin Tasarım */
+    .balik-resmi { 
+      width: 70px; height: 70px; object-fit: contain; 
+      background: white; padding: 10px; border-radius: 12px; 
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1); 
+      cursor: pointer; transition: transform 0.2s, border 0.2s;
+      border: 3px solid transparent;
+      margin: 0 auto;
+    }
+    /* Balığa dokunulduğunda etrafında çıkacak seçim çerçevesi */
+    .balik-resmi.secili { border-color: #f6ad55; transform: scale(1.15); }
+    
+    /* İsimlerin Yazdığı Hedef Kutular */
+    .hedef-kutu {
+      background: #cbd5e0; padding: 15px 5px; border-radius: 12px;
+      border: 2px dashed #718096; font-weight: bold; color: #4a5568;
+      min-height: 50px; display: flex; flex-direction: column; align-items: center; justify-content: center;
+      cursor: pointer; transition: all 0.3s;
+    }
+    /* Doğru eşleşme olduğunda kutunun alacağı şekil */
+    .hedef-kutu.dogru { background: #48bb78; color: white; border-color: #2f855a; }
+    .hedef-kutu img { width: 60px; height: 60px; object-fit: contain; margin-top: 8px; }
+    
+    .geri-butonu {
+      display: inline-block; margin-top: 40px; background: #4a5568; color: white;
+      padding: 12px 25px; border-radius: 25px; text-decoration: none; font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Kimin Adı Ne?</h2>
+  <p>Önce resme dokun, sonra doğru ismin kutusuna dokun.</p>
+
+  <div class="oyun-alani">
+    <div class="sutun" id="balik-havuzu">
+      <img src="kopekbaligi.png" class="balik-resmi" id="kopekbaligi" alt="Köpekbalığı">
+      <img src="palyaco.png" class="balik-resmi" id="palyaco" alt="Palyaçobalığı">
+      <img src="mavitang.png" class="balik-resmi" id="mavitang" alt="Mavi Tang">
+      <img src="vatoz.png" class="balik-resmi" id="vatoz" alt="Vatoz">
+      <img src="denizati.png" class="balik-resmi" id="denizati" alt="Denizatı">
+    </div>
+
+    <div class="sutun">
+      <div class="hedef-kutu" data-hedef="palyaco">Palyaçobalığı</div>
+      <div class="hedef-kutu" data-hedef="denizati">Denizatı</div>
+      <div class="hedef-kutu" data-hedef="kopekbaligi">Köpekbalığı</div>
+      <div class="hedef-kutu" data-hedef="vatoz">Vatoz</div>
+      <div class="hedef-kutu" data-hedef="mavitang">Mavi Tang</div>
+    </div>
+  </div>
+
+  <a href="index.html" class="geri-butonu">⬅ AR Kamerasına Dön</a>
+
+  <script>
+    let seciliBalik = null;
+
+    // 1. Aşama: Balıklara dokunma işlemi
+    const baliklar = document.querySelectorAll('.balik-resmi');
+    baliklar.forEach(balik => {
+      balik.addEventListener('click', () => {
+        // Önceki seçimi temizle
+        baliklar.forEach(b => b.classList.remove('secili'));
+        // Dokunulan balığı turuncu çerçeve ile seçili hale getir
+        seciliBalik = balik;
+        balik.classList.add('secili');
+      });
+    });
+
+    // 2. Aşama: Hedef isim kutularına dokunma işlemi
+    const kutular = document.querySelectorAll('.hedef-kutu');
+    kutular.forEach(kutu => {
+      kutu.addEventListener('click', () => {
+        // Eğer balık seçilmeden kutuya basıldıysa uyarı ver
+        if (!seciliBalik) {
+          alert("Önce soldan bir balık resmi seçmelisin!");
+          return;
+        }
+
+        const hedefId = kutu.getAttribute('data-hedef');
+
+        // Eğer seçilen balığın ID'si ile kutunun Hedef ID'si tutuyorsa
+        if (seciliBalik.id === hedefId) {
+          kutu.classList.add('dogru'); // Kutuyu yeşil yap
+          kutu.innerHTML = `✅ ${kutu.innerText}`; // Başına tik koy
+          kutu.appendChild(seciliBalik); // Resmi kutunun içine zıplat
+          
+          seciliBalik.classList.remove('secili'); // Turuncu çerçeveyi kaldır
+          seciliBalik.style.pointerEvents = 'none'; // Doğru bilinen balığa bir daha tıklanmasını engelle
+          seciliBalik = null; // Seçimi sıfırla, sıradaki balığa geç
+        } 
+        // Eğer yanlış eşleştirildiyse
+        else {
+          if(navigator.vibrate) navigator.vibrate(200); // Telefonu titret
+          alert("Ops! Yanlış balık, tekrar dene.");
+          seciliBalik.classList.remove('secili'); // Seçimi iptal et
+          seciliBalik = null;
+        }
+      });
+    });
+  </script>
+</body>
+</html>

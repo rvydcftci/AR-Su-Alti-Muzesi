@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Balık Bilgi Testi</title>
+
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(#67c7f7, #0b4f8a);
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+            color: #102a43;
+        }
+
+        .test-kutusu {
+            background: white;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+        }
+
+        h1 {
+            color: #0b4f8a;
+            margin-bottom: 10px;
+        }
+
+        .soru {
+            background: #ebf8ff;
+            margin: 18px 0;
+            padding: 18px;
+            border-radius: 15px;
+            text-align: left;
+        }
+
+        .soru h3 {
+            margin-top: 0;
+            color: #2b6cb0;
+        }
+
+        label {
+            display: block;
+            background: white;
+            margin: 8px 0;
+            padding: 10px;
+            border-radius: 10px;
+            cursor: pointer;
+            border: 2px solid #bee3f8;
+        }
+
+        label:hover {
+            background: #dff6ff;
+        }
+
+        button {
+            background: #2b6cb0;
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 25px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        button:hover {
+            background: #1e4e8c;
+        }
+
+        #sonuc {
+            margin-top: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #0b4f8a;
+        }
+
+        .geri-butonu {
+            display: inline-block;
+            margin-top: 25px;
+            background: #4a5568;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="test-kutusu">
+        <h1>🐟 Balık Bilgi Testi</h1>
+        <p>AR kartlarından öğrendiğin bilgileri test et!</p>
+
+        <div class="soru">
+            <h3>1. Köpek balığı nerede yaşar?</h3>
+            <label><input type="radio" name="q1" value="1"> Okyanus ve denizlerde</label>
+            <label><input type="radio" name="q1" value="0"> Ormanda</label>
+            <label><input type="radio" name="q1" value="0"> Çölde</label>
+        </div>
+
+        <div class="soru">
+            <h3>2. Köpek balığının güçlü olan duyusu hangisidir?</h3>
+            <label><input type="radio" name="q2" value="1"> Koku alma duyusu</label>
+            <label><input type="radio" name="q2" value="0"> Tat alma duyusu</label>
+            <label><input type="radio" name="q2" value="0"> Görme duyusu</label>
+        </div>
+
+        <div class="soru">
+            <h3>3. Palyaço balığı hangi karakterle tanınır?</h3>
+            <label><input type="radio" name="q3" value="1"> Nemo</label>
+            <label><input type="radio" name="q3" value="0"> Dory</label>
+            <label><input type="radio" name="q3" value="0"> SpongeBob</label>
+        </div>
+
+        <div class="soru">
+            <h3>4. Mavi Tang balığı hangi karakterle tanınır?</h3>
+            <label><input type="radio" name="q4" value="0"> Nemo</label>
+            <label><input type="radio" name="q4" value="1"> Dory</label>
+            <label><input type="radio" name="q4" value="0"> Şimşek McQueen</label>
+        </div>
+
+        <div class="soru">
+            <h3>5. Mavi Tang balığı genellikle ne ile beslenir?</h3>
+            <label><input type="radio" name="q5" value="1"> Yosunlar</label>
+            <label><input type="radio" name="q5" value="0"> Meyveler</label>
+            <label><input type="radio" name="q5" value="0"> Böcekler</label>
+        </div>
+
+        <button onclick="sonucuGoster()">Sonucu Göster</button>
+
+        <div id="sonuc"></div>
+
+        <a href="index.html" class="geri-butonu">⬅ AR Kamerasına Dön</a>
+        <a href="oyun.html" class="geri-butonu">🧩 Eşleştirme Oyununa Git</a>
+    </div>
+
+    <script>
+        function sonucuGoster() {
+            let puan = 0;
+
+            for (let i = 1; i <= 5; i++) {
+                const secilen = document.querySelector('input[name="q' + i + '"]:checked');
+
+                if (!secilen) {
+                    alert("Lütfen tüm soruları cevapla 😊");
+                    return;
+                }
+
+                puan += Number(secilen.value);
+            }
+
+            let mesaj = "";
+
+            if (puan === 5) {
+                mesaj = "🏆 5/5 - Deniz Uzmanı!";
+            } else if (puan === 4) {
+                mesaj = "⭐ 4/5 - Harika iş!";
+            } else if (puan === 3) {
+                mesaj = "👍 3/5 - Çok iyi!";
+            } else if (puan === 2) {
+                mesaj = "😊 2/5 - Biraz daha çalış!";
+            } else {
+                mesaj = "🐠 " + puan + "/5 - Tekrar dene!";
+            }
+
+            document.getElementById("sonuc").innerText = mesaj;
+        }
+    </script>
+
+</body>
+
+</html>
