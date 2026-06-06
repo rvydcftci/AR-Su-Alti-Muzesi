@@ -1,29 +1,31 @@
 # 🐟 AR Su Altı Müzesi
 
-AR Su Altı Müzesi, çocukların balık türlerini ve su altı canlılarını eğlenceli ve etkileşimli bir şekilde öğrenmelerini sağlamak amacıyla geliştirilmiş web tabanlı bir artırılmış gerçeklik (AR) uygulamasıdır.
+AR Su Altı Müzesi, çocukların balık türlerini ve su altı canlılarını eğlenceli ve etkileşimli bir şekilde öğrenmelerini sağlamak amacıyla geliştirilmiş web tabanlı bir Artırılmış Gerçeklik (AR) uygulamasıdır.
 
 ##  Proje Hakkında
 
-Bu proje kapsamında kullanıcılar, kamera aracılığıyla hedef görselleri (marker) tarayarak üç boyutlu balık modellerini görüntüleyebilir ve balıklar hakkında bilgilere ulaşabilirler.
+Bu proje kapsamında kullanıcılar, kamera aracılığıyla hedef görselleri (marker) tarayarak üç boyutlu balık modellerini görüntüleyebilir, balıklar hakkında bilgi edinebilir ve sesli tanıtımlarını dinleyebilirler.
 
-Artırılmış gerçeklik teknolojisi sayesinde öğrenme süreci daha dikkat çekici ve eğlenceli hale getirilmiştir. Ayrıca uygulama içerisinde yer alan bilgi testi ve eşleştirme oyunu ile kullanıcıların öğrendikleri bilgileri pekiştirmeleri amaçlanmıştır.
+Uygulama yalnızca artırılmış gerçeklik deneyimi sunmakla kalmaz, aynı zamanda balık galerisi, bilgi testi ve eşleştirme oyunu gibi etkileşimli bölümlerle öğrenme sürecini daha eğlenceli hale getirir.
 
 ##  Projenin Amacı
 
-Bu projenin amacı, çocukların su altı canlılarını ve balık türlerini eğlenerek öğrenmelerini sağlamaktır.
+Projenin temel amacı, çocukların su altı canlılarını ve balık türlerini teknolojiyi kullanarak daha etkili ve kalıcı bir şekilde öğrenmelerini sağlamaktır.
 
-Geleneksel öğrenme yöntemlerini artırılmış gerçeklik teknolojisi ile destekleyerek çocukların ilgisini çekmek, öğrenme motivasyonunu artırmak ve kalıcı öğrenme deneyimi sunmak hedeflenmiştir.
+Artırılmış gerçeklik teknolojisi sayesinde öğrenme süreci görsel ve etkileşimli hale getirilerek kullanıcıların ilgisinin artırılması hedeflenmiştir.
 
-## Özellikler
+##  Özellikler
 
-* Artırılmış Gerçeklik (AR) desteği
-* Marker tabanlı nesne tanıma
-* 3 boyutlu balık modelleri
-* Balık bilgi kartları
-* Bilgi testi
-* Eşleştirme oyunu
-* Mobil uyumlu kullanım
-* QR kod ile hızlı erişim
+* 📷 Artırılmış Gerçeklik (AR) desteği
+* 🎯 Marker tabanlı nesne tanıma
+* 🐟 3 boyutlu balık modelleri
+* 📚 Balık bilgi kartları
+* 🔊 Sesli balık tanıtımları
+* 🐠 Balık galerisi
+* 🧩 Eşleştirme oyunu
+* 📝 Bilgi testi
+* 📱 Mobil uyumlu arayüz
+* 🌐 QR kod ile hızlı erişim
 
 ## 🛠 Kullanılan Teknolojiler
 
@@ -38,6 +40,15 @@ Geleneksel öğrenme yöntemlerini artırılmış gerçeklik teknolojisi ile des
 ##  Canlı Demo
 
 https://ar-su-alti-muzesi.vercel.app/
+
+##  Kullanım
+
+1. AR Kamerayı Aç seçeneğini kullanarak artırılmış gerçeklik moduna geçin.
+2. Balık kartını kameraya gösterin.
+3. 3 boyutlu balık modelini görüntüleyin.
+4. Balığın sesli tanıtımını dinleyin.
+5. Bilgi kartını inceleyin.
+6. İsterseniz Balık Galerisi, Eşleştirme Oyunu ve Bilgi Testi bölümlerini kullanın.
 
 ##  Geliştiriciler
 
