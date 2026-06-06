@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Balık Galerisi</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(180deg, #00bcd4, #0277bd, #004d73);
+            min-height: 100vh;
+            color: white;
+            padding: 20px;
+        }
+
+        .ust {
+            text-align: center;
+            margin-bottom: 22px;
+        }
+
+        .ust h1 {
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        .ust p {
+            font-size: 16px;
+            opacity: 0.95;
+        }
+
+        .geri {
+            display: inline-block;
+            margin-bottom: 18px;
+            padding: 11px 18px;
+            border-radius: 22px;
+            background: white;
+            color: #0277bd;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+        }
+
+        .galeri {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 18px;
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        .kart {
+            background: rgba(255, 255, 255, 0.18);
+            border: 2px solid rgba(255, 255, 255, 0.35);
+            border-radius: 28px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 14px 32px rgba(0, 0, 0, 0.28);
+            backdrop-filter: blur(10px);
+        }
+
+        .kart img {
+            width: 150px;
+            height: 150px;
+            object-fit: contain;
+            background: rgba(255, 255, 255, 0.25);
+            border-radius: 24px;
+            padding: 10px;
+            margin-bottom: 12px;
+        }
+
+        .kart h2 {
+            margin: 8px 0;
+            font-size: 22px;
+        }
+
+        .kart p {
+            font-size: 15px;
+            line-height: 1.45;
+            min-height: 88px;
+        }
+
+        .ses {
+            border: none;
+            padding: 12px 18px;
+            border-radius: 24px;
+            background: linear-gradient(135deg, #ff9800, #ff5722);
+            color: white;
+            font-weight: bold;
+            font-size: 15px;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+            cursor: pointer;
+        }
+
+        .not {
+            text-align: center;
+            margin-top: 24px;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+
+<body>
+
+    <a href="index.html" class="geri">⬅ AR Müzeye Dön</a>
+
+    <div class="ust">
+        <h1>🐟 Balık Galerisi</h1>
+        <p>QR kart olmadan balıkları incele, bilgilerini oku ve seslerini dinle.</p>
+    </div>
+
+    <div class="galeri">
+
+        <div class="kart">
+            <img src="kopekbaligi.png" alt="Köpek Balığı">
+            <h2>🦈 Köpek Balığı</h2>
+            <p>
+                Okyanus ve denizlerde yaşayan güçlü bir deniz canlısıdır.
+                Koku alma duyusu gelişmiştir ve deniz ekosisteminde önemli bir yere sahiptir.
+            </p>
+            <button class="ses" onclick="sesCal('kopekbaligi.mp3')">🔊 Sesini Dinle</button>
+        </div>
+
+        <div class="kart">
+            <img src="palyaco.png" alt="Palyaço Balığı">
+            <h2>🐠 Palyaço Balığı</h2>
+            <p>
+                Tropikal denizlerde yaşayan renkli bir balıktır.
+                Deniz şakayıkları arasında yaşamayı sever ve turuncu-beyaz çizgileriyle tanınır.
+            </p>
+            <button class="ses" onclick="sesCal('palyaco.mp3')">🔊 Sesini Dinle</button>
+        </div>
+
+        <div class="kart">
+            <img src="mavitang.png" alt="Mavi Tang Balığı">
+            <h2>🐟 Mavi Tang</h2>
+            <p>
+                Parlak mavi rengiyle dikkat çeker.
+                Tropikal okyanuslarda yaşar, genellikle yosunlarla beslenir ve mercan resiflerinde görülür.
+            </p>
+            <button class="ses" onclick="sesCal('mavitang.mp3')">🔊 Sesini Dinle</button>
+        </div>
+
+    </div>
+
+    <div class="not">
+        🌊 Daha eğlenceli deneyim için AR modunda balık kartlarını kameraya gösterebilirsin.
+    </div>
+
+    <script>
+        let aktifSes = null;
+
+        function sesCal(dosya) {
+            if (aktifSes) {
+                aktifSes.pause();
+                aktifSes.currentTime = 0;
+            }
+
+            aktifSes = new Audio(dosya);
+            aktifSes.play();
+        }
+    </script>
+
+</body>
+
+</html>
