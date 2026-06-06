@@ -39,10 +39,33 @@
     .test {
       background: #38a169;
     }
+
+    .ses-butonu {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #e67e22;
+      color: white;
+      border: none;
+      padding: 13px 22px;
+      border-radius: 25px;
+      font-size: 16px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-weight: bold;
+      z-index: 1000;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35);
+    }
   </style>
 </head>
 
 <body>
+
+  <button id="sesBaslat" class="ses-butonu">🔊 Sesi Başlat</button>
+
+  <audio id="kopekbaligiSes" src="kopekbaligi.mp3"></audio>
+  <audio id="palyacoSes" src="palyaco.mp3"></audio>
+  <audio id="mavitangSes" src="mavitang.mp3"></audio>
 
   <a-scene mindar-image="imageTargetSrc: targets.mind;" color-space="sRGB"
     renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false"
@@ -57,7 +80,7 @@
     <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
 
     <!-- KÖPEK BALIĞI -->
-    <a-entity mindar-image-target="targetIndex: 0">
+    <a-entity id="kopekbaligiTarget" mindar-image-target="targetIndex: 0">
       <a-gltf-model src="#kopekbaligiModel" position="-0.45 0 0" scale="0.30 0.30 0.30">
       </a-gltf-model>
 
@@ -71,7 +94,7 @@
     </a-entity>
 
     <!-- PALYAÇO BALIĞI -->
-    <a-entity mindar-image-target="targetIndex: 1">
+    <a-entity id="palyacoTarget" mindar-image-target="targetIndex: 1">
       <a-gltf-model src="#palyacoModel" position="-0.45 0 0" scale="0.35 0.35 0.35">
       </a-gltf-model>
 
@@ -79,13 +102,13 @@
       </a-plane>
 
       <a-text
-        value="PALYACO BALIGI&#10;Tropikal denizlerde yasar.&#10;Kucuk deniz canlilari ve yosunlarla beslenir.&#10;Nemo karakteriyle taninir."
+        value="PALYACO BALIGI&#10;Tropikal denizlerde yasar.&#10;Kucuk deniz canlilari ve yosunlarla beslenir.&#10;Deniz sakayiklari arasinda yasar."
         position="0.55 0.08 0.01" width="1.7" align="center" color="#000000">
       </a-text>
     </a-entity>
 
     <!-- MAVİ TANG -->
-    <a-entity mindar-image-target="targetIndex: 2">
+    <a-entity id="mavitangTarget" mindar-image-target="targetIndex: 2">
       <a-gltf-model src="#mavitangModel" position="-0.45 0 0" scale="0.02 0.02 0.02">
       </a-gltf-model>
 
@@ -93,7 +116,7 @@
       </a-plane>
 
       <a-text
-        value="MAVI TANG BALIGI&#10;Tropikal okyanuslarda yasar.&#10;Genellikle yosunlarla beslenir.&#10;Dory karakteriyle taninir."
+        value="MAVI TANG BALIGI&#10;Tropikal okyanuslarda yasar.&#10;Genellikle yosunlarla beslenir.&#10;Parlak mavi rengiyle taninir."
         position="0.55 0.08 0.01" width="1.7" align="center" color="#000000">
       </a-text>
     </a-entity>
@@ -104,6 +127,54 @@
     <a href="oyun.html" class="sayfa-butonu oyun">🧩 Eşleştirme Oyunu</a>
     <a href="test.html" class="sayfa-butonu test">📝 Bilgi Testi</a>
   </div>
+
+  <script>
+    let sesAktif = false;
+
+    const sesler = {
+      kopekbaligi: document.getElementById("kopekbaligiSes"),
+      palyaco: document.getElementById("palyacoSes"),
+      mavitang: document.getElementById("mavitangSes")
+    };
+
+    function tumSesleriDurdur() {
+      Object.values(sesler).forEach((ses) => {
+        ses.pause();
+        ses.currentTime = 0;
+      });
+    }
+
+    function sesCal(ses) {
+      if (!sesAktif) return;
+
+      tumSesleriDurdur();
+      ses.currentTime = 0;
+      ses.play().catch(() => {
+        console.log("Ses oynatılamadı.");
+      });
+    }
+
+    document.getElementById("sesBaslat").addEventListener("click", () => {
+      sesAktif = true;
+      document.getElementById("sesBaslat").innerText = "🔊 Ses Aktif";
+    });
+
+    document.querySelector("#kopekbaligiTarget").addEventListener("targetFound", () => {
+      sesCal(sesler.kopekbaligi);
+    });
+
+    document.querySelector("#palyacoTarget").addEventListener("targetFound", () => {
+      sesCal(sesler.palyaco);
+    });
+
+    document.querySelector("#mavitangTarget").addEventListener("targetFound", () => {
+      sesCal(sesler.mavitang);
+    });
+
+    document.querySelector("#kopekbaligiTarget").addEventListener("targetLost", tumSesleriDurdur);
+    document.querySelector("#palyacoTarget").addEventListener("targetLost", tumSesleriDurdur);
+    document.querySelector("#mavitangTarget").addEventListener("targetLost", tumSesleriDurdur);
+  </script>
 
 </body>
 
