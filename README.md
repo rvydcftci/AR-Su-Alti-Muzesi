@@ -52,5 +52,5 @@ https://ar-su-alti-muzesi.vercel.app/
 
 ##  Geliştiriciler
 
-* Rüveyda Çiftci
-* Elif Ergen
+* Rüveyda Çiftci    Öğrenci No: 225541057
+* Elif Ergen        Öğrenci No: 225541061
