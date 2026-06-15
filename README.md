@@ -50,7 +50,6 @@ https://ar-su-alti-muzesi.vercel.app/
 5. Bilgi kartını inceleyin.
 6. İsterseniz Balık Galerisi, Eşleştirme Oyunu ve Bilgi Testi bölümlerini kullanın.
 
-##  Geliştiriciler
-
-* Rüveyda Çiftci    Öğrenci No: 225541057
-* Elif Ergen        Öğrenci No: 225541061
+##  Katkıda Bulunanlar
+* **Rüveyda Çiftci** - Öğrenci No: [225541057]
+* **Elif Ergen** - Öğrenci No: [225541061]
